@@ -4,5 +4,4 @@ class HomeController extends GetxController{
 
   var counter = 0.obs;
 
-
 }

@@ -1,15 +1,55 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_vietnam_covid19/src/page/home/home_page.dart';
 
-class SplashPage extends StatelessWidget{
+class SplashPage extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return SplashState();
+  }
+}
+
+class SplashState extends State<SplashPage> {
+  @override
+  void initState() {
+    super.initState();
+
+    Timer(
+        Duration(seconds: 5),
+        () => Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => HomePage())));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: Text(
-          "Yo"
-        ),
+        body: SafeArea(
+      child: Stack(
+        children: [
+          Container(
+              width: double.infinity,
+              height: double.infinity,
+              child: Image.asset(
+                'assets/images/bg_splash.jpg',
+                fit: BoxFit.cover,
+              )),
+          Center(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  "",
+                  style: TextStyle(color: Colors.white),
+                ),
+                Image.asset("assets/images/ic_facemask.png")
+              ],
+            ),
+          )
+        ],
       ),
-    );
+    ));
   }
 }

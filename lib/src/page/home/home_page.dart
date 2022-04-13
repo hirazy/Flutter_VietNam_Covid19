@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_vietnam_covid19/src/constant/constants.dart';
+import '../../widget/home/widget_center_home.dart';
+import '../../widget/home/widget_top_home.dart';
 
 class HomePage extends StatefulWidget {
-
   static String routeName = "/home";
 
   @override
@@ -16,21 +19,26 @@ class HomeState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: [
-          InkWell(
-            onTap: (){
-
-            },
-          )
-        ],
+        systemOverlayStyle: const SystemUiOverlayStyle(
+          systemNavigationBarColor: Constants.colorMain, // Navigation bar
+          statusBarColor: Constants.colorMain, // Status bar
+        ),
+        leading: InkWell(
+          child: Icon(Icons.menu),
+          onTap: () {},
+        ),
       ),
       body: Container(
-        child: Column(
-          children: [
-
-          ],
-        )
-      ),
+          child: Column(
+        children: [
+          TopHomeWidget(onCall: onCall, onSendSMS: sendSMS),
+          CenterHomeWidget()
+        ],
+      )),
     );
   }
+
+  void onCall() {}
+
+  void sendSMS() {}
 }
