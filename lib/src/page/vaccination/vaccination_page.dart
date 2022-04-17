@@ -16,11 +16,30 @@ class VaccinationState extends State<VaccinationPage>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: _floatingFilterButton(),
       body: Container(
-        child: Text(
-          "Hehe"
+
+      ),
+    );
+
+
+  }
+
+  Widget _floatingFilterButton(){
+    return ElevatedButton(
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(Colors.green)
+      ),
+      child: Container(
+        child: Center(
+          child: Icon(
+            Icons.filter_alt_rounded
+          ),
         ),
       ),
+      onPressed: (){
+
+      },
     );
   }
 
