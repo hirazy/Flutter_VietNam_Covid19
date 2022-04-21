@@ -5,30 +5,23 @@ abstract class MapEvent extends Equatable {
   const MapEvent();
 }
 
-class MapEventLoading extends MapEvent {
-  const MapEventLoading();
+class LoadEvent extends MapEvent {
+  const LoadEvent();
 
   @override
   List<Object?> get props => [];
 }
 
-class MapEventRefresh extends MapEvent {
-  @override
-  List<Object?> get props => throw UnimplementedError();
-}
-
-class MapEventLoaded extends MapEvent {
-  const MapEventLoaded();
-
+class RefreshEvent extends MapEvent {
   @override
   List<Object?> get props => [];
 }
 
-class MapEventError extends MapEvent {
-  final BuildContext context;
 
-  const MapEventError({required this.context});
+class WarningMapEvent extends MapEvent {
+
+  const WarningMapEvent();
 
   @override
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [];
 }

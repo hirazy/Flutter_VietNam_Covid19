@@ -2,9 +2,12 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_vietnam_covid19/src/page/drawer/drawer_page.dart';
 import 'package:flutter_vietnam_covid19/src/page/home/home_page.dart';
 
 class SplashPage extends StatefulWidget {
+  static const String routeName = "/";
+
   @override
   State<StatefulWidget> createState() {
     return SplashState();
@@ -16,10 +19,8 @@ class SplashState extends State<SplashPage> {
   void initState() {
     super.initState();
 
-    Timer(
-        Duration(seconds: 5),
-        () => Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => HomePage())));
+    Timer(const Duration(seconds: 5),
+        () => Navigator.pushNamed(context, DrawerPage.routeName));
   }
 
   @override

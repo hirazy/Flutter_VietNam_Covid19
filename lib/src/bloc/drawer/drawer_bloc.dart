@@ -4,6 +4,9 @@ import 'package:flutter_vietnam_covid19/src/bloc/drawer/drawer_event.dart';
 import 'drawer_state.dart';
 
 class DrawerBloc extends Bloc<DrawerEvent, DrawerState>{
+
+  int currentPageIndex = 0;
+
   DrawerBloc() : super(const DrawerState()){
     on<MenuEvent>((event, emit) {
       emit(
@@ -14,6 +17,4 @@ class DrawerBloc extends Bloc<DrawerEvent, DrawerState>{
     });
   }
 
-
-  
 }

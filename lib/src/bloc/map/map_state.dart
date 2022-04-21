@@ -1,21 +1,32 @@
 import 'package:equatable/equatable.dart';
 
-abstract class MapState extends Equatable{
+class MapState extends Equatable{
   const MapState();
 
   @override
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [];
 
 }
 
-class MapStateLoading extends MapState{
+class LoadingState extends MapState{
+  const LoadingState();
+}
 
+class LoadingListData extends MapState{
+  const LoadingListData();
 }
 
 class SearchState extends MapState{
 
+  const SearchState();
+
 }
 
 class ShowWarningState extends MapState{
+  const ShowWarningState();
+}
 
+class LoadingSuccess extends MapState{
+
+  const LoadingSuccess();
 }

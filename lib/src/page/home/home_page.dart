@@ -6,7 +6,7 @@ import '../../widget/home/widget_center_home.dart';
 import '../../widget/home/widget_top_home.dart';
 
 class HomePage extends StatefulWidget {
-  static String routeName = "/home";
+  static const String routeName = "/home";
 
   @override
   HomeState createState() {

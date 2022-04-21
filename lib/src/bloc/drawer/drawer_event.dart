@@ -11,5 +11,5 @@ class MenuEvent extends DrawerEvent {
   const MenuEvent({required this.isCollapsed, required this.newIndex});
 
   @override
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [];
 }
