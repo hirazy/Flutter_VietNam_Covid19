@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:line_icons/line_icon.dart';
 
@@ -8,9 +9,31 @@ class AuthRepositoryImpl extends AuthRepository {
 
   @override
   Future<void> login(String username, String password) {
-    // TODO: implement login
+
+    throw UnimplementedError();
+
+    FirebaseAuth auth = FirebaseAuth.instance;
+
+  }
+
+  @override
+  Future<void> authenticate(String username, String password, String url) {
+    // TODO: implement authenticate
     throw UnimplementedError();
   }
+
+  @override
+  Future<void> logout() {
+    // TODO: implement logout
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> signup(String username, String password) {
+    // TODO: implement signup
+    throw UnimplementedError();
+  }
+
 
   // final Reader _reader;
   //

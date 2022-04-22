@@ -18,16 +18,16 @@ class HomeState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        systemOverlayStyle: const SystemUiOverlayStyle(
-          systemNavigationBarColor: Constants.colorMain, // Navigation bar
-          statusBarColor: Constants.colorMain, // Status bar
-        ),
-        leading: InkWell(
-          child: Icon(Icons.menu),
-          onTap: () {},
-        ),
-      ),
+      // appBar: AppBar(
+      //   systemOverlayStyle: const SystemUiOverlayStyle(
+      //     systemNavigationBarColor: Constants.colorMain, // Navigation bar
+      //     statusBarColor: Constants.colorMain, // Status bar
+      //   ),
+      //   leading: InkWell(
+      //     child: Icon(Icons.menu),
+      //     onTap: () {},
+      //   ),
+      // ),
       body: Container(
           child: Column(
         children: [

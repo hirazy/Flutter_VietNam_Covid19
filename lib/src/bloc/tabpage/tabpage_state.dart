@@ -5,9 +5,9 @@ class TabPageState extends Equatable{
 
   const TabPageState({this.index = 0});
 
-
+  TabPageState copyWith({int? index})
+    => TabPageState(index: index ?? this.index);
 
   @override
-  // TODO: implement props
   List<Object?> get props => [index];
 }

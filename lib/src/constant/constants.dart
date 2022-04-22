@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Constants{
+class Constants {
+  static const String baseUrl = "";
 
   static String fontPoppins = "Poppins";
 

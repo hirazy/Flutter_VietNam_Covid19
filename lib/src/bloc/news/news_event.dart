@@ -28,7 +28,7 @@ class OnTapItemEvent extends NewsEvent{
   OnTapItemEvent({
     required this.context,
     required this.newsModel
-});
+  });
 
   @override
   List<Object?> get props => [];

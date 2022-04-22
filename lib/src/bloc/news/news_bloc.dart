@@ -1,26 +1,39 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_vietnam_covid19/src/bloc/news/news_event.dart';
 import 'package:flutter_vietnam_covid19/src/bloc/news/news_state.dart';
+import 'package:flutter_vietnam_covid19/src/page/news_detail/news_detail_page.dart';
 
-class NewsBloc extends Bloc<NewsEvent, NewsState>{
-  NewsBloc(NewsState initialState) : super(initialState);
+import '../../data/model/news_model.dart';
 
-  // NewsBloc(): super(NewsState){
-  //   on<LoadEvent>(onLoadData);
-  //
-  //   on<RefreshEvent>(onRefresh);
-  // }
+class NewsBloc extends Bloc<NewsEvent, NewsState> {
 
-  void onLoadData(LoadEvent event, Emitter<NewsState> emitter){
+  List<NewsModel> lstNews = [];
+
+  NewsBloc() : super(LoadingState()) {
+    on<LoadEvent>(onLoadData);
+
+    on<RefreshEvent>(onRefresh);
+
+    on<OnTapItemEvent>(onTapItem);
+  }
+
+  void onLoadData(LoadEvent event, Emitter<NewsState> emitter) {
     emit(LoadingState());
 
 
   }
 
-  Future<void> onRefresh() async{
-    emit(RefreshState());
-
-
+  Future<void> onRefresh(RefreshEvent event, Emitter<NewsState> emitter) async {
+    lstNews.clear();
+    emit(LoadingState());
   }
 
+  void onTapItem(OnTapItemEvent event, Emitter<NewsState> emitter){
+    Navigator.pushNamed(
+      event.context,
+      NewsDetailPage.routName,
+      arguments: event.newsModel
+    );
+  }
 }

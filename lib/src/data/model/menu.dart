@@ -39,24 +39,24 @@ class MenuTabItem {
         routeName: StatisticPage.routeName),
     MenuTabItem(
         id: 2,
-        title: "Trang chủ",
-        appBarTitle: "Trang chủ",
-        widget: VaccinationPage(),
-        iconData: LineIcons.home,
+        title: "Bản đồ",
+        appBarTitle: "Bản đồ vùng dịch",
+        widget: MapsPage(),
+        iconData: LineIcons.map,
         routeName: VaccinationPage.routeName),
     MenuTabItem(
         id: 3,
-        title: "Map",
-        appBarTitle: "Map",
-        widget: MapsPage(),
-        iconData: LineIcons.home,
+        title: "Số liệu",
+        appBarTitle: "Số liệu tiêm chủng",
+        widget: VaccinationPage(),
+        iconData: LineIcons.database,
         routeName: MapsPage.routeName),
     MenuTabItem(
         id: 4,
         title: "News",
         appBarTitle: "News",
         widget: NewsPage(),
-        iconData: LineIcons.home,
+        iconData: LineIcons.newspaperAlt,
         routeName: NewsPage.routeName),
   ];
 }
