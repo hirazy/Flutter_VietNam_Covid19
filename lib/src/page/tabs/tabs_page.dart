@@ -35,12 +35,17 @@ class TabsPageState extends State<TabsPage> {
   }
 
   Widget _bottomNavigationBar(TabPageState state, BuildContext context) {
-    Color _selected = ThemePrimary.primaryColor;
+    Color _selectedColor = ThemePrimary.primaryColor;
     return SafeArea(
         child: SalomonBottomBar(
+          currentIndex: state.index,
+            onTap: (index) {
+              context.read<TabPageBloc>().add(ChangeTabEvent(newIndex: index));
+            },
             items: MenuTabItem.menus
                 .map((e) => SalomonBottomBarItem(
-                    icon: Icon(e.iconData), title: Text("")))
+                    icon: Icon(e.iconData), title: Text(e.title, overflow: TextOverflow.ellipsis,),
+                selectedColor: _selectedColor))
                 .toList()));
   }
 

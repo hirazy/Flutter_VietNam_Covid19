@@ -1,23 +1,46 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_vietnam_covid19/src/bloc/statistics/statistics_bloc.dart';
+import 'package:flutter_vietnam_covid19/src/bloc/statistics/statistic_event.dart';
+import 'package:flutter_vietnam_covid19/src/bloc/statistics/statistics_state.dart';
 
-class StatisticPage extends StatefulWidget{
+enum CovidNumberType { infections, beingTreated, gotCured, dead }
 
-  static const String routeName = "/statistic";
+class StatisticPage extends StatefulWidget {
+  static const String routeName = "/statistics";
 
   @override
-  State<StatefulWidget> createState() {
-    return StatisticState();
+  StatisticPageState createState() {
+    return StatisticPageState();
   }
 }
 
-class StatisticState extends State<StatisticPage>{
+class StatisticPageState extends State<StatisticPage> {
+  late GlobalKey _statisticsGlobalKey;
+
+  @override
+  void initState() {
+    super.initState();
+    _statisticsGlobalKey = GlobalKey();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        child: Text("Hehe"),
+    return BlocProvider(
+      create: (context) => StatisticBloc()..add(const LoadEvent()),
+      child: BlocBuilder<StatisticBloc, StatisticsState>(
+        builder: (context, state) {
+          final bloc = BlocProvider.of<StatisticBloc>(context);
+
+          return BlocListener<StatisticBloc, StatisticsState>(
+            listener: (context, state) {
+              if (state is LoadingState) {
+                context.read<StatisticBloc>().add(const LoadEvent());
+              }
+            },
+            child: Container(),
+          );
+        },
       ),
     );
   }

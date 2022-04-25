@@ -18,7 +18,7 @@ class MapBloc extends Bloc<MapEvent, MapState>{
     on<WarningMapEvent>(_onWarning);
   }
 
-  void _onLoadData(LoadEvent event, Emitter<MapState> state) async{
+  void _onLoadData(LoadEvent event, Emitter<MapState> emit) async{
     emit(const LoadingState());
 
     try{

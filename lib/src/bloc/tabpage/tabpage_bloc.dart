@@ -7,7 +7,7 @@ class TabPageBloc extends Bloc<TabPageEvent, TabPageState> {
     on<ChangeTabEvent>(_onChangeTab);
   }
 
-  void _onChangeTab(ChangeTabEvent event, Emitter<TabPageState> emitter) {
+  void _onChangeTab(ChangeTabEvent event, Emitter<TabPageState> emit) {
     int _index = event.newIndex;
     emit(state.copyWith(index: _index));
   }

@@ -32,5 +32,4 @@ class OnTapItemEvent extends NewsEvent{
 
   @override
   List<Object?> get props => [];
-
 }

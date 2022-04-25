@@ -18,15 +18,15 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
     on<OnTapItemEvent>(onTapItem);
   }
 
-  void onLoadData(LoadEvent event, Emitter<NewsState> emitter) {
+  void onLoadData(LoadEvent event, Emitter<NewsState> emit) {
     emit(LoadingState());
-
 
   }
 
-  Future<void> onRefresh(RefreshEvent event, Emitter<NewsState> emitter) async {
+  Future<void> onRefresh(RefreshEvent event, Emitter<NewsState> emit) async {
     lstNews.clear();
     emit(LoadingState());
+
   }
 
   void onTapItem(OnTapItemEvent event, Emitter<NewsState> emitter){

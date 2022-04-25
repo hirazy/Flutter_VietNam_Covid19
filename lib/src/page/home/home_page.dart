@@ -29,16 +29,23 @@ class HomeState extends State<HomePage> {
       //   ),
       // ),
       body: Container(
-          child: Column(
-        children: [
-          TopHomeWidget(onCall: onCall, onSendSMS: sendSMS),
-          CenterHomeWidget()
-        ],
-      )),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                TopHomeWidget(onCall: onCall, onSendSMS: sendSMS),
+                CenterHomeWidget()
+              ],
+            ),
+          )
+          ),
     );
   }
 
-  void onCall() {}
+  void onCall() {
 
-  void sendSMS() {}
+  }
+
+  void sendSMS() {
+
+  }
 }

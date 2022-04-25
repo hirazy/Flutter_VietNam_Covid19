@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_vietnam_covid19/src/constant/constants.dart';
 import 'package:flutter_vietnam_covid19/src/constant/theme.dart';
@@ -40,7 +41,11 @@ class CenterHomeWidget extends StatelessWidget {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(top: 20),
+            margin: EdgeInsets.only(
+                left: MediaQuery.of(context).size.height * 0.18,
+                right: 16,
+                top: 16,
+                bottom: 16),
             child: Stack(children: [
               Container(
                   decoration: BoxDecoration(
@@ -52,13 +57,23 @@ class CenterHomeWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Bạn đã sẵn sàng?"),
-                      Text("Chung sức vì cộng đồng vượt qua đại dịch")
+                      Text(
+                        "Bạn đã sẵn sàng?",
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
+                      Text("Chung sức vì cộng đồng vượt qua đại dịch",
+                          style: Theme.of(context).textTheme.bodyText2)
                     ],
                   )),
               Positioned(
-                child: SvgPicture.asset("assets/svg/owntest.svg",
-                    fit: BoxFit.fill),
+                top: 0,
+                bottom: 0,
+                left: 15,
+                child: SvgPicture.asset(
+                  "assets/svg/owntest.svg",
+                  fit: BoxFit.fill,
+                  alignment: Alignment.center,
+                ),
               )
             ]),
           )
@@ -73,7 +88,7 @@ class CenterHomeWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SvgPicture.asset(svgPicture, fit: BoxFit.fill),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Text(
