@@ -18,37 +18,37 @@ class ProvinceModel {
 }
 
 class Province {
-  String id;
-  String title;
-  String clsdeaths;
+  String? id;
+  String? title;
+  String? clsdeaths;
 
-  Clslevel clslevel;
-  int level;
-  int confirmed;
-  int incconfirmed;
-  int recovered;
-  int deaths;
-  int incdeath;
-  int onevaccine;
-  int donevaccine;
-  double onevaccinepercent;
-  double donevaccinepercent;
+  Clslevel? clslevel;
+  int? level;
+  int? confirmed;
+  int? incconfirmed;
+  int? recovered;
+  int? deaths;
+  int? incdeath;
+  int? onevaccine;
+  int? donevaccine;
+  double? onevaccinepercent;
+  double? donevaccinepercent;
 
   Province(
-      {required this.id,
-      required this.title,
-      required this.clsdeaths,
-      required this.level,
-      required this.confirmed,
-      required this.clslevel,
-      required this.incconfirmed,
-      required this.recovered,
-      required this.deaths,
-      required this.incdeath,
-      required this.onevaccine,
-      required this.donevaccine,
-      required this.onevaccinepercent,
-      required this.donevaccinepercent});
+      { this.id,
+       this.title,
+       this.clsdeaths,
+       this.level,
+       this.confirmed,
+       this.clslevel,
+       this.incconfirmed,
+       this.recovered,
+       this.deaths,
+       this.incdeath,
+       this.onevaccine,
+       this.donevaccine,
+       this.onevaccinepercent,
+       this.donevaccinepercent});
 
   factory Province.fromJson(Map<String, dynamic> json) => Province(
       id: json["id"],

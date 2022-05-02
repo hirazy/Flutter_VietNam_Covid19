@@ -44,7 +44,7 @@ class TabsPageState extends State<TabsPage> {
             },
             items: MenuTabItem.menus
                 .map((e) => SalomonBottomBarItem(
-                    icon: Icon(e.iconData), title: Text(e.title, overflow: TextOverflow.ellipsis,),
+                    icon: Icon(e.iconData, size: 20,), title: Text(e.title, overflow: TextOverflow.ellipsis,),
                 selectedColor: _selectedColor))
                 .toList()));
   }

@@ -15,8 +15,8 @@ class TopHomeWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(bottom: 20),
-      decoration: const BoxDecoration(
-        color: Constants.colorMain,
+      decoration: BoxDecoration(
+        color: ThemePrimary.primaryColor,
         borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(30), bottomRight: Radius.circular(30)),
       ),
@@ -93,34 +93,44 @@ class TopHomeWidget extends StatelessWidget {
       required Color backgroundColor}) {
     return Flexible(
       child: Container(
-        decoration:
-            BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20))),
-        child: Expanded(
-            child: Center(
-                child: TextButton(
-          onPressed: onTap(),
+          decoration: const BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(20))),
           child: Row(
-            children: [Icon(icon), Text(title)],
-          ),
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(backgroundColor),
-            fixedSize: MaterialStateProperty.all(
-                Size(MediaQuery.of(context).size.width * 0.45, 54)),
-            padding: MaterialStateProperty.all(
-                const EdgeInsets.only(left: 8, right: 8, top: 12, bottom: 12)),
-            elevation: MaterialStateProperty.all(6),
-            //Defines Elevation
-            shadowColor: MaterialStateProperty.all(Colors.grey),
-            //Define
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(32.0),
-                // side: BorderSide(color: Colors.red),
-              ),
-            ),
-          ),
-        ))),
-      ),
+            children: [
+              Expanded(
+                  child: Center(
+                      child: TextButton(
+                onPressed: onTap(),
+                child: Row(
+                  children: [
+                    Icon(
+                      icon,
+                      color: Colors.white,
+                    ),
+                    SizedBox(width: 10),
+                    Text(title, style: TextStyle(color: Colors.white))
+                  ],
+                ),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(backgroundColor),
+                  fixedSize: MaterialStateProperty.all(
+                      Size(MediaQuery.of(context).size.width * 0.45, 54)),
+                  padding: MaterialStateProperty.all(const EdgeInsets.only(
+                      left: 8, right: 8, top: 12, bottom: 12)),
+                  elevation: MaterialStateProperty.all(6),
+                  //Defines Elevation
+                  shadowColor: MaterialStateProperty.all(Colors.grey),
+                  //Define
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(32.0),
+                      // side: BorderSide(color: Colors.red),
+                    ),
+                  ),
+                ),
+              ))),
+            ],
+          )),
     );
   }
 }

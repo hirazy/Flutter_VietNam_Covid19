@@ -1,3 +1,10 @@
+import 'dart:convert';
+
+SumPatient sumPatientFromJson(Map<String, dynamic> json) =>
+  SumPatient.fromJson(json);
+
+String sumPatientToJson(SumPatient data) => json.encode(data);
+
 class SumPatient {
   bool success;
   Data data;

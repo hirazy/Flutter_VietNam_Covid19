@@ -41,14 +41,17 @@ class CenterHomeWidget extends StatelessWidget {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(
-                left: MediaQuery.of(context).size.height * 0.18,
-                right: 16,
-                top: 16,
-                bottom: 16),
+            padding: EdgeInsets.all(8),
             child: Stack(children: [
               Container(
+                  margin: EdgeInsets.only(left: 24),
+                  padding: EdgeInsets.only(
+                      left: MediaQuery.of(context).size.height * 0.18,
+                      right: 16,
+                      top: 16,
+                      bottom: 16),
                   decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
                       gradient: LinearGradient(colors: [
                     ThemePrimary.primaryColor,
                     ThemePrimary.primaryColor.withOpacity(0.4)
@@ -59,10 +62,10 @@ class CenterHomeWidget extends StatelessWidget {
                     children: [
                       Text(
                         "Bạn đã sẵn sàng?",
-                        style: Theme.of(context).textTheme.headline6,
+                        style: Theme.of(context).textTheme.headline6!.copyWith(color: Colors.white)
                       ),
                       Text("Chung sức vì cộng đồng vượt qua đại dịch",
-                          style: Theme.of(context).textTheme.bodyText2)
+                          style: Theme.of(context).textTheme.bodyText2!.copyWith(color: Colors.white))
                     ],
                   )),
               Positioned(
