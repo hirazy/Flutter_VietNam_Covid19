@@ -20,7 +20,9 @@ class RefreshEvent extends MapEvent {
 
 class WarningMapEvent extends MapEvent {
 
-  const WarningMapEvent();
+  final BuildContext _context;
+
+  WarningMapEvent(this._context);
 
   @override
   List<Object?> get props => [];

@@ -137,6 +137,7 @@ flutter:
     - assets/svg/cleanhands.svg
     - assets/svg/owntest.svg
     - assets/svg/facemask.svg
+    - assets/maps/vietnam.json
 
   fonts:
     - family: Poppins

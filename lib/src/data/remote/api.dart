@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_vietnam_covid19/src/data/model/news_model.dart';
+import 'package:flutter_vietnam_covid19/src/data/model/province_map_model.dart';
 import 'package:flutter_vietnam_covid19/src/data/model/province_model.dart';
 import 'package:flutter_vietnam_covid19/src/data/model/statistical_chart.dart';
 import 'package:flutter_vietnam_covid19/src/data/model/sum_patient.dart';
@@ -73,6 +74,27 @@ class Api {
       print(e);
     }
     return _res;
+  }
+
+  static Future<List<ProvinceMap>>getProvincesMap() async{
+
+    List<ProvinceMap> list = [];
+
+    try{
+      var url = Uri.parse('$_domain/getProvincesMap');
+
+      print('$_domain/getProvincesMap');
+      http.Response response = await http.post(url);
+
+      if(response.statusCode == 200){
+        print("getProvincesMap " + response.body);
+        list = provinceMapModelFromJson(response.body).list;
+      }
+    }
+    catch(e){
+      print("Exception getProvincesMap " + e.toString());
+    }
+    return list;
   }
 
   static Future<RssFeed?> getNewsCovid() async {

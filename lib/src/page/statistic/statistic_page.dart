@@ -127,6 +127,7 @@ class StatisticPageState extends State<StatisticPage> {
                       xValueMapper: (ChartData sales, _) => sales.x,
                       yValueMapper: (ChartData sales, _) => sales.y,
                       opacity: 0.7,
+                      name: 'Ca nhiễm',
                       borderColor: ThemePrimary.red,
                       onCreateRenderer:
                           (ChartSeries<ChartData, dynamic> series) {
@@ -153,8 +154,7 @@ class StatisticPageState extends State<StatisticPage> {
                                   size: 14.0, color: ThemePrimary.red),
                           const SizedBox(width: 4.0),
                           Text(series.name,
-                              style:
-                              Theme.of(context).textTheme.subtitle2!),
+                              style: Theme.of(context).textTheme.subtitle2!),
                           const SizedBox(width: 4.0),
                         ],
                       ),
@@ -167,8 +167,34 @@ class StatisticPageState extends State<StatisticPage> {
 
             return Expanded(
                 child: Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(50))),
               child: Column(
                 children: [
+                  Text("Biểu đồ số ca nhiễm và tử vong",
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline5!
+                          .copyWith(color: Colors.white)),
+                  InkWell(
+                    onTap: () {
+                      BlocProvider.of<StatisticBloc>(
+                              _statisticsGlobalKey.currentContext!)
+                          .add(ChangeProvinceEvent(
+                              lastProvince: bloc.provinceSelected!,
+                              context: context));
+                    },
+                    child: Container(
+                        child: Row(
+                      children: [],
+                    )),
+                  ),
+                  Expanded(
+                      child: Padding(
+                          padding: EdgeInsets.only(right: 12),
+                          child: bloc.state is LoadingState
+                              ? LoadingWidget()
+                              : _buildDefaultChart()))
                 ],
               ),
             ));
@@ -183,6 +209,11 @@ class StatisticPageState extends State<StatisticPage> {
                     child: SingleChildScrollView(
                       physics: AlwaysScrollableScrollPhysics(),
                       child: SizedBox(
+                        height: MediaQuery.of(context).size.height -
+                            kToolbarHeight -
+                            kToolbarHeight -
+                            MediaQuery.of(context).padding.top -
+                            16,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [_statistics(), _chart()],

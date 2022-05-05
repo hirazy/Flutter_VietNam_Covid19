@@ -19,7 +19,6 @@ class LoadingListData extends MapState{
 class SearchState extends MapState{
 
   const SearchState();
-
 }
 
 class ShowWarningState extends MapState{
