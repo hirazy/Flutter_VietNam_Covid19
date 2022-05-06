@@ -47,7 +47,7 @@ class StatisticItem extends StatelessWidget {
               NumberFormat.decimalPattern().format(value),
               style: Theme.of(context)
                   .textTheme
-                  .headline3
+                  .headline5
                   ?.copyWith(color: Colors.white),
             ),
             Row(
@@ -58,6 +58,7 @@ class StatisticItem extends StatelessWidget {
                     ? const Icon(
                         Icons.arrow_upward,
                         size: 14,
+                        color: Colors.white,
                       )
                     : SizedBox(),
                 Text(

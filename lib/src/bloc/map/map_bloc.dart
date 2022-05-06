@@ -31,37 +31,42 @@ class MapBloc extends Bloc<MapEvent, MapState> {
     on<WarningMapEvent>(_onWarning);
   }
 
+  String LEVEL_1= "1 - 50.000";
+  String LEVEL_2= "50.001 - 100.000";
+  String LEVEL_3= "100.001 - 500.000";
+  String LEVEL_4= "500.001 - 1.000.000";
+
   Map<String, Color> mapColorByCount = {
-    "1-100": ThemePrimary.primaryColor.withOpacity(0.1),
-    "101 - 500": ThemePrimary.primaryColor.withOpacity(0.2),
-    "501 - 1000": ThemePrimary.primaryColor.withOpacity(0.4),
-    "1001 - 10000": ThemePrimary.primaryColor.withOpacity(0.6),
-    "10001+": ThemePrimary.primaryColor
+    "1 - 50.000": ThemePrimary.primaryColor.withOpacity(0.1),
+    "50.001 - 100.000": ThemePrimary.primaryColor.withOpacity(0.2),
+    "100.001 - 500.000": ThemePrimary.primaryColor.withOpacity(0.4),
+    "500.001 - 1.000.000": ThemePrimary.primaryColor.withOpacity(0.6),
+    "1.000.001+": ThemePrimary.primaryColor
   };
 
   late final List<MapColorMapper> _shapeColorMappers = <MapColorMapper>[
     MapColorMapper(
         from: 1,
-        to: 100,
+        to: 50000,
         color: ThemePrimary.primaryColor.withOpacity(0.2),
-        text: '1 - 100'),
+        text: '1 - 50.000'),
     MapColorMapper(
-        from: 101,
-        to: 500,
+        from: 50001,
+        to: 100000,
         color: ThemePrimary.primaryColor.withOpacity(0.4),
-        text: '101 - 500'),
+        text: '50.001 - 100.000'),
     MapColorMapper(
-        from: 501,
-        to: 1000,
+        from: 100001,
+        to: 500000,
         color: ThemePrimary.primaryColor.withOpacity(0.6),
-        text: '501 - 1000'),
+        text: '100.001 - 500.000'),
     MapColorMapper(
-        from: 1001,
-        to: 10000,
+        from: 500001,
+        to: 1000000,
         color: ThemePrimary.primaryColor,
-        text: '1001 - 10000'),
+        text: '500.001 - 1.000.000'),
     MapColorMapper(
-        from: 10001, to: 99999999999, color: Colors.red[300]!, text: '10001+'),
+        from: 1000001, to: 99999999999, color: Colors.red[300]!, text: '1.000.001+'),
   ];
 
   void _onLoadData(LoadEvent event, Emitter<MapState> emit) async {
@@ -70,7 +75,7 @@ class MapBloc extends Bloc<MapEvent, MapState> {
     print("loadString");
 
     try {
-      String data = await rootBundle.loadString('assets/maps/vietnam.json') as String;
+      String data = await rootBundle.loadString('assets/maps/vietnam.json');
 
       var jsonResult = json.decode(data);
 

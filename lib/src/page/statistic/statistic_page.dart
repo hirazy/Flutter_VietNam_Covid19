@@ -132,7 +132,26 @@ class StatisticPageState extends State<StatisticPage> {
                       onCreateRenderer:
                           (ChartSeries<ChartData, dynamic> series) {
                         return CustomSplineAreaSeriesRenderer(series);
-                      }),
+                      },
+                  ),
+                  SplineAreaSeries<ChartData, dynamic>(
+                    onCreateRenderer: (ChartSeries<ChartData, dynamic> series) {
+                      return CustomSplineAreaSeriesRenderer(series);
+                    },
+                    gradient: LinearGradient(colors: [
+                      ThemePrimary.orange,
+                      ThemePrimary.orange.withOpacity(0.2)
+                    ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
+                    // borderWidth: 2,
+                    opacity: 0.7,
+                    borderColor: ThemePrimary.orange,
+                    borderDrawMode: BorderDrawMode.top,
+                    dataSource: bloc.lstChartData ?? [],
+                    name: 'Tử vong',
+                    xValueMapper: (ChartData sales, _) => sales.x,
+                    yValueMapper: (ChartData sales, _) =>
+                    sales.secondSeriesYValue,
+                  )
                 ];
               }
 
@@ -161,13 +180,21 @@ class StatisticPageState extends State<StatisticPage> {
                     );
                   },
                 ),
+                primaryXAxis: CategoryAxis(
+                  borderColor: Colors.white,
+                  labelPlacement: LabelPlacement.onTicks,
+                  majorGridLines: const MajorGridLines(width: 0),
+                ),
+                primaryYAxis: NumericAxis(
+                  labelFormat: '{value}',
+                ),
                 series: getDefaultSeries(),
               );
             }
 
             return Expanded(
                 child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(50))),
               child: Column(
                 children: [

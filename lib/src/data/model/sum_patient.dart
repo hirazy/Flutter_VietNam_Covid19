@@ -41,14 +41,14 @@ class Data {
   });
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-      id: json["id"],
-      issueDate: json["issueDate"],
-      confirmed: json["confirmed"],
-      recovered: json["recovered"],
-      death: json["createdData"],
-      modifiedDate: json["modifiedDate"],
-      plusConfirmed: json["plusConfirmed"],
-      plusRecovered: json["plusRecovered"],
-      plusDeath: json["plusDeath"],
-      createdDate: json["createDate"]);
+      id: json["Id"],
+      issueDate:  DateTime.parse(json["IssueDate"]),
+      confirmed: json["Confirmed"],
+      recovered: json["Recovered"],
+      death: json["Death"],
+      modifiedDate: json["ModifiedDate"] ?? "",
+      plusConfirmed: json["PlusConfirmed"],
+      plusRecovered: json["PlusRecovered"],
+      plusDeath: json["PlusDeath"],
+      createdDate:  DateTime.parse(json["CreatedDate"]));
 }

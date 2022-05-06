@@ -27,16 +27,23 @@ class Api {
 
     List<StatisticalChartItem> _res = [];
 
+    print("getChartCovidByProvinceId");
+
     try {
       var url = Uri.parse('$_domain/GetChartCovid');
       http.Response response = await http.post(url);
 
       if (response.statusCode == 200) {
+
+        print("getChartCovidByProvinceId " + response.body);
+
         _res = statisticalChart(response.body).list;
 
         return _res;
       }
-    } catch (e) {}
+    } catch (e) {
+      print("getChartCovidByProvinceId " + e.toString());
+    }
 
     return _res;
   }
@@ -61,13 +68,15 @@ class Api {
   static Future<SumPatient?> getSumPatient() async {
     SumPatient? _res;
 
-    var url = Uri.parse('${_domain}/${_routeGetChartCovid}');
+    print("getSumPatient");
+
+    var url = Uri.parse('${_domain}/getSummPatient');
     try {
       http.Response response = await http.post(url);
 
       if (response.statusCode == 200) {
+        print("getSumPatient" + response.body);
         _res = sumPatientFromJson(json.decode(response.body));
-        print("getSumPatient " + response.body);
         return _res;
       }
     } catch (e) {

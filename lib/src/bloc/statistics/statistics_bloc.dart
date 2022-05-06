@@ -24,16 +24,18 @@ class StatisticBloc extends Bloc<StatisticEvent, StatisticsState> {
 
   void onLoadData(StatisticEvent event, Emitter<StatisticsState> emit) async {
     emit(const OnLoadingChartState());
-
     sumPatient = await Api.getSumPatient();
+
+    print("onLoadData" + sumPatient!.data.toString());
 
     List<StatisticalChartItem> _lstStatisticChart =
         await Api.getChartCovidByProvinceId();
+
     if (_lstStatisticChart != null) {
       lstChartData = createListChartData(_lstStatisticChart);
     }
 
-    print("onLoadData" + sumPatient!.data.toString());
+    print("onLoadData" + lstChartData!.length.toString());
 
     lstProvince = await Api.getAllPatientProvinces();
 

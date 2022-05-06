@@ -17,7 +17,7 @@ class StatisticalChart {
       StatisticalChart(
           success: json["success"],
           list: List<StatisticalChartItem>.from(
-              json["list"].forEach((it) => StatisticalChartItem.fromJson(it))));
+              json["list"].map((it) => StatisticalChartItem.fromJson(it))));
 
   Map<String, dynamic> toJson() => {"success": this.success, "list": this.list};
 }
@@ -38,7 +38,7 @@ class StatisticalChartItem {
 
   factory StatisticalChartItem.fromJson(Map<String, dynamic> json) =>
       StatisticalChartItem(
-          issueDate: json["issueDate"],
+          issueDate: DateTime.parse(json["IssueDate"]),
           date: json["date"],
           confirmed: json["confirmed"] ?? 0,
           recovered: json["recovered"] ?? 0,

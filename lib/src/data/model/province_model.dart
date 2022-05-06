@@ -14,7 +14,7 @@ class ProvinceModel {
   factory ProvinceModel.fromJson(Map<String, dynamic> json) => ProvinceModel(
       success: json["success"],
       data:
-          List<Province>.from(json["data"].map((it) => Province.fromJson(it))));
+          List<Province>.from(json["list"].map((it) => Province.fromJson(it))));
 }
 
 class Province {
