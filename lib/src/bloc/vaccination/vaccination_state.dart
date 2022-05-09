@@ -15,10 +15,25 @@ class LoadingState extends VaccinationState{
   List<Object?> get props => [];
 }
 
-class SearchSuccessState extends VaccinationState{
+class ChangeVaccineViewState extends VaccinationState{
+  final bool isShowVaccination;
 
-  const SearchSuccessState();
+  const ChangeVaccineViewState({required this.isShowVaccination});
 
   @override
-  List<Object?> get props => [];
+  List<Object> get props => [isShowVaccination];
+}
+
+class SearchSuccessState extends VaccinationState{
+
+  final String keySearch;
+
+  const SearchSuccessState({required this.keySearch});
+
+  @override
+  List<Object> get props => [keySearch];
+}
+
+class LoadingSuccessState extends VaccinationState{
+  const LoadingSuccessState();
 }

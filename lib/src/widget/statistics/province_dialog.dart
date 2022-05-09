@@ -17,7 +17,6 @@ class ProvinceDialog extends StatefulWidget {
 }
 
 class ProvinceDialogState extends State<ProvinceDialog> {
-
   List<Province> lstFilterProvince = [];
 
   late Province provinceSelected;
@@ -34,8 +33,7 @@ class ProvinceDialogState extends State<ProvinceDialog> {
     _textEditingController.addListener(() {
       if (_textEditingController.text.isNotEmpty) {
         onFilter(_textEditingController.text);
-      }
-      else {
+      } else {
         onFilter(null);
       }
     });
@@ -50,10 +48,36 @@ class ProvinceDialogState extends State<ProvinceDialog> {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      child: Container(
-
-      ),
-    );
+        child: Stack(
+      overflow: Overflow.visible,
+      children: [
+        Container(
+          width: double.infinity,
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 54,
+                child: TextField(
+                  decoration: InputDecoration(),
+                ),
+              ),
+              Expanded(
+                  child: ListView(
+                children: lstFilterProvince
+                    .map((e) => InkWell(
+                          onTap: () {
+                            provinceSelected = e;
+                            Navigator.of(context).pop(provinceSelected);
+                          },
+                          child: Text(e.title ?? ""),
+                        ))
+                    .toList(),
+              ))
+            ],
+          ),
+        )
+      ],
+    ));
   }
 
   onFilter(value) {
@@ -61,17 +85,15 @@ class ProvinceDialogState extends State<ProvinceDialog> {
 
     if (value == null) {
       lstFilterProvince.addAll(widget.lstProvince);
-    }
-    else {
+    } else {
       String _searchEngine = _textEditingController.text.toLowerCase();
 
-      lstFilterProvince = widget.lstProvince.where((element){
+      lstFilterProvince = widget.lstProvince.where((element) {
         String titleSearch = element.title!.toLowerCase();
         return titleSearch.contains(_searchEngine);
       }).toList();
     }
 
-    setState(() {
-    });
+    setState(() {});
   }
 }

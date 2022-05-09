@@ -14,15 +14,15 @@ class ProvinceModel {
   factory ProvinceModel.fromJson(Map<String, dynamic> json) => ProvinceModel(
       success: json["success"],
       data:
-          List<Province>.from(json["list"].map((it) => Province.fromJson(it))));
+          List<Province>.from(json["list"].map((it) => Province.fromJson(it))).toList());
 }
 
 class Province {
   String? id;
   String? title;
   String? clsdeaths;
-
   Clslevel? clslevel;
+  Clsconfirmed? clsconfirmed;
   int? level;
   int? confirmed;
   int? incconfirmed;
@@ -47,25 +47,45 @@ class Province {
        this.incdeath,
        this.onevaccine,
        this.donevaccine,
+       this.clsconfirmed,
        this.onevaccinepercent,
        this.donevaccinepercent});
 
   factory Province.fromJson(Map<String, dynamic> json) => Province(
-      id: json["id"],
-      title: json["title"],
-      clsdeaths: json["clsdeaths"],
-      level: json["level"],
-      confirmed: json["confirmed"],
-      incconfirmed: json["incconfirmed"],
-      recovered: json["recovered"],
-      deaths: json["deaths"],
-      incdeath: json["incdeath"],
-      onevaccine: json["onevaccine"],
-      donevaccine: json["donevaccine"],
-      onevaccinepercent: json["onevaccinepercent"],
-      donevaccinepercent: json["donevaccinepercent"],
-      clslevel: clslevelValues.map[json["clslevel"]]!
+      id: json["id"] ?? "",
+      title: json["title"] ?? "",
+      clsdeaths: json["clsdeaths"] ?? "",
+      level: json["level"] ?? 0,
+      confirmed: json["confirmed"] ?? 0,
+      incconfirmed: json["incconfirmed"] ?? 0,
+      recovered: json["recovered"] ?? 0,
+      deaths: json["deaths"] ?? 0,
+      incdeath: json["incdeath"] ?? 0,
+      onevaccine: json["onevaccine"] ?? 0,
+      donevaccine: json["donevaccine"] ??0,
+      onevaccinepercent: json["onevaccinepercent"] ?? 0,
+      donevaccinepercent: json["donevaccinepercent"] ?? 0,
+      clsconfirmed: clsconfirmedValues.map[json["clsconfirmed"]] ?? Clsconfirmed.INC,
+      clslevel: clslevelValues.map[json["clslevel"]] ?? Clslevel.GREEN_ZONE
   );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "title": title,
+    "clsdeaths": clsdeaths,
+    "clslevel": clslevelValues.reverse[clslevel],
+    "clsconfirmed": clsconfirmedValues.reverse[clsconfirmed],
+    "level": level,
+    "confirmed": confirmed,
+    "incconfirmed": incconfirmed,
+    "recovered": recovered,
+    "deaths": deaths,
+    "incdeath": incdeath,
+    "onevaccine": onevaccine,
+    "donevaccine": donevaccine,
+    "onevaccinepercent": onevaccinepercent,
+    "donevaccinepercent": donevaccinepercent
+  };
 }
 
 enum Clsconfirmed { INC }
@@ -86,7 +106,7 @@ class EnumValues<T> {
 
   EnumValues(this.map);
 
-  Map<T, String> get reserve {
+  Map<T, String> get reverse {
     reserveMap = map.map((key, value) => MapEntry(value, key));
     return reserveMap;
   }

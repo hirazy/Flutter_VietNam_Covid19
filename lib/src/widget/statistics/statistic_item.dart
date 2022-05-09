@@ -43,12 +43,18 @@ class StatisticItem extends StatelessWidget {
                   .headline6!
                   .copyWith(color: Colors.white),
             ),
+            SizedBox(
+              height: 10,
+            ),
             Text(
               NumberFormat.decimalPattern().format(value),
               style: Theme.of(context)
                   .textTheme
                   .headline5
                   ?.copyWith(color: Colors.white),
+            ),
+            SizedBox(
+              height: 10,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -64,7 +70,7 @@ class StatisticItem extends StatelessWidget {
                 Text(
                     plusValue == null
                         ? ""
-                        : NumberFormat.decimalPattern().format(value),
+                        : NumberFormat.decimalPattern().format(plusValue),
                     style: Theme.of(context)
                         .textTheme
                         .bodyText1!

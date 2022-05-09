@@ -43,14 +43,14 @@ class MenuTabItem {
         appBarTitle: "Bản đồ vùng dịch",
         widget: MapsPage(),
         iconData: LineIcons.map,
-        routeName: VaccinationPage.routeName),
+        routeName: MapsPage.routeName),
     MenuTabItem(
         id: 3,
         title: "Số liệu",
         appBarTitle: "Số liệu tiêm chủng",
         widget: VaccinationPage(),
         iconData: LineIcons.database,
-        routeName: MapsPage.routeName),
+        routeName: VaccinationPage.routeName),
     MenuTabItem(
         id: 4,
         title: "News",

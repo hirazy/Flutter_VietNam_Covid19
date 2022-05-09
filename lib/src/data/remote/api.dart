@@ -55,11 +55,15 @@ class Api {
       var url = Uri.parse('$_domain/getAllPatientProvinces');
       http.Response response = await http.post(url);
 
-      _result = provinceModelFromJson(response.body).data;
+      if(response.statusCode == 200){
+        print("getAllPatientProvinces " + response.body);
+        _result = provinceModelFromJson(response.body).data;
+      }
 
       return _result;
     }
     catch(e){
+      print("getAllPatientProvinces " + e.toString());
     }
 
     return _result;
