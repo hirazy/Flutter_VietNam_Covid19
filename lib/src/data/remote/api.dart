@@ -31,7 +31,7 @@ class Api {
 
     try {
       var url = Uri.parse('$_domain/GetChartCovid');
-      http.Response response = await http.post(url);
+      http.Response response = await http.post(url, body: {"provinceId": provinceId});
 
       if (response.statusCode == 200) {
 
@@ -81,10 +81,11 @@ class Api {
       if (response.statusCode == 200) {
         print("getSumPatient" + response.body);
         _res = sumPatientFromJson(json.decode(response.body));
+        print("getSumPatient" + jsonEncode(_res));
         return _res;
       }
     } catch (e) {
-      print(e);
+      print("get Sum Patient Error " + e.toString());
     }
     return _res;
   }

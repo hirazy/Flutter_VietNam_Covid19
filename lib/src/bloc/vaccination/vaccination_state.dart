@@ -1,21 +1,20 @@
 import 'package:equatable/equatable.dart';
 
-class VaccinationState extends Equatable{
-
+class VaccinationState extends Equatable {
   const VaccinationState();
 
   @override
   List<Object?> get props => [];
 }
 
-class LoadingState extends VaccinationState{
+class LoadingState extends VaccinationState {
   const LoadingState();
 
   @override
   List<Object?> get props => [];
 }
 
-class ChangeVaccineViewState extends VaccinationState{
+class ChangeVaccineViewState extends VaccinationState {
   final bool isShowVaccination;
 
   const ChangeVaccineViewState({required this.isShowVaccination});
@@ -24,8 +23,13 @@ class ChangeVaccineViewState extends VaccinationState{
   List<Object> get props => [isShowVaccination];
 }
 
-class SearchSuccessState extends VaccinationState{
+class OnTappedFilterState extends VaccinationState {
+  final bool isReverseAnimation;
 
+  OnTappedFilterState({required this.isReverseAnimation});
+}
+
+class SearchSuccessState extends VaccinationState {
   final String keySearch;
 
   const SearchSuccessState({required this.keySearch});
@@ -34,6 +38,6 @@ class SearchSuccessState extends VaccinationState{
   List<Object> get props => [keySearch];
 }
 
-class LoadingSuccessState extends VaccinationState{
+class LoadingSuccessState extends VaccinationState {
   const LoadingSuccessState();
 }

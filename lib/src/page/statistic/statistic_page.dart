@@ -217,12 +217,12 @@ class StatisticPageState extends State<StatisticPage> {
                 child: Container(
               decoration: BoxDecoration(
                   color: ThemePrimary.scaffoldBackgroundColor,
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                       topRight: Radius.circular(50),
                       topLeft: Radius.circular(50))),
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   Text("Biểu đồ số ca nhiễm và tử vong",
@@ -249,7 +249,7 @@ class StatisticPageState extends State<StatisticPage> {
                               color: Colors.black
                             ),
                           ),
-                          Icon(
+                          const Icon(
                             Icons.arrow_drop_down,
                             color: Colors.black,
                           )
@@ -275,7 +275,7 @@ class StatisticPageState extends State<StatisticPage> {
                 ? LoadingWidget()
                 : RefreshIndicator(
                     child: SingleChildScrollView(
-                      physics: AlwaysScrollableScrollPhysics(),
+                      physics: const AlwaysScrollableScrollPhysics(),
                       child: SizedBox(
                         height: MediaQuery.of(context).size.height -
                             kToolbarHeight -

@@ -18,6 +18,7 @@ class VaccinationBloc extends Bloc<VaccinationEvent, VaccinationState> {
     on<RefreshEvent>(onRefresh);
     on<SearchProvinceEvent>(onSearchProvince);
     on<ChangeVaccineViewEvent>(onChangeVaccineView);
+    on<ReverseAnimationEvent>(onHandleAnimation);
   }
 
   void onLoadData(LoadEvent event, Emitter<VaccinationState> emitter) async{
@@ -62,6 +63,7 @@ class VaccinationBloc extends Bloc<VaccinationEvent, VaccinationState> {
   }
 
   void onHandleAnimation(ReverseAnimationEvent event, Emitter<VaccinationState> emitter){
-
+    isReverseAnimation = event.isReverseAnimation;
+    emitter(OnTappedFilterState(isReverseAnimation: isReverseAnimation));
   }
 }

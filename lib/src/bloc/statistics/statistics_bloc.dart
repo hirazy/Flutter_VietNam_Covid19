@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vietnam_covid19/src/bloc/statistics/statistic_event.dart';
@@ -24,9 +26,10 @@ class StatisticBloc extends Bloc<StatisticEvent, StatisticsState> {
 
   void onLoadData(StatisticEvent event, Emitter<StatisticsState> emit) async {
     emit(const OnLoadingChartState());
+
     sumPatient = await Api.getSumPatient();
 
-    print("onLoadData" + sumPatient!.data.toString());
+    // print("onLoadData-Statistic" + jsonEncode(sumPatient!.data));
 
     List<StatisticalChartItem> _lstStatisticChart =
         await Api.getChartCovidByProvinceId();
@@ -45,7 +48,7 @@ class StatisticBloc extends Bloc<StatisticEvent, StatisticsState> {
     lstProvince.insert(0, province);
     provinceSelected = lstProvince.first;
 
-    emit(LoadingSuccessState());
+    emit(const LoadingSuccessState());
     // sumPatient = await
   }
 

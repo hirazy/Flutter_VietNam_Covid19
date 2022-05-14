@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 SumPatient sumPatientFromJson(Map<String, dynamic> json) =>
-  SumPatient.fromJson(json);
+    SumPatient.fromJson(json);
 
 String sumPatientToJson(SumPatient data) => json.encode(data);
 
@@ -11,8 +11,10 @@ class SumPatient {
 
   SumPatient({required this.success, required this.data});
 
-  factory SumPatient.fromJson(Map<String, dynamic> json) =>
-      SumPatient(success: json["success"], data: Data.fromJson(json["data"]));
+  factory SumPatient.fromJson(Map<String, dynamic> json) {
+    return SumPatient(success: json["success"], data: Data.fromJson(json["data"]));
+  }
+
 }
 
 class Data {
@@ -42,13 +44,13 @@ class Data {
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
       id: json["Id"],
-      issueDate:  DateTime.parse(json["IssueDate"]),
+      issueDate: DateTime.parse(json["IssueDate"]),
       confirmed: json["Confirmed"],
       recovered: json["Recovered"],
       death: json["Death"],
-      modifiedDate: json["ModifiedDate"] ?? "",
+      modifiedDate: json["ModifiedDate"] ?? "x1",
       plusConfirmed: json["PlusConfirmed"],
       plusRecovered: json["PlusRecovered"],
       plusDeath: json["PlusDeath"],
-      createdDate:  DateTime.parse(json["CreatedDate"]));
+      createdDate: DateTime.parse(json["CreatedDate"]));
 }

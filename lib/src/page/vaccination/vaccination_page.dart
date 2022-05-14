@@ -23,11 +23,11 @@ class VaccinationPageState extends State<VaccinationPage>
     with TickerProviderStateMixin {
   late GlobalKey _vaccineGlobalKey;
   late TextEditingController _searchEditController;
+  late AnimationController animationController;
+  late Animation<double> animation;
 
   @override
   void initState() {
-    super.initState();
-
     _vaccineGlobalKey = GlobalKey();
 
     _searchEditController = TextEditingController();
@@ -36,6 +36,17 @@ class VaccinationPageState extends State<VaccinationPage>
       BlocProvider.of<VaccinationBloc>(_vaccineGlobalKey.currentContext!)
           .add(SearchProvinceEvent(keySearch: _searchEditController.text));
     });
+
+    animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 250),
+    );
+
+    CurvedAnimation curvedAnimation =
+        CurvedAnimation(curve: Curves.easeInOut, parent: animationController);
+    animation = Tween<double>(begin: 0, end: 1).animate(curvedAnimation);
+
+    super.initState();
   }
 
   @override
@@ -262,6 +273,7 @@ class VaccinationPageState extends State<VaccinationPage>
                                   child: Row(
                                     children: [
                                       Expanded(
+                                        flex: 1,
                                         child: Text(
                                           e.title ?? "",
                                           style: Theme.of(context)
@@ -272,7 +284,9 @@ class VaccinationPageState extends State<VaccinationPage>
                                                   fontWeight: FontWeight.bold),
                                         ),
                                       ),
+                                      SizedBox(width: 12),
                                       Expanded(
+                                        flex: 1,
                                           child: bloc.isShowVaccination
                                               ? _item(
                                                   sumVaccine: e.donevaccine!,
@@ -289,8 +303,9 @@ class VaccinationPageState extends State<VaccinationPage>
                                                           fontWeight:
                                                               FontWeight.bold),
                                                 )),
-                                      SizedBox(width: 8),
+                                      SizedBox(width: 12),
                                       Expanded(
+                                        flex: 1,
                                         child: bloc.isShowVaccination
                                             ? _item(
                                                 sumVaccine: e.donevaccine!,
@@ -311,36 +326,85 @@ class VaccinationPageState extends State<VaccinationPage>
                         children: [
                           _searchWidget(),
                           _titleListWidget(),
-                          _lstData()
+                          _lstData(),
                         ],
                       ));
           }
 
           return Scaffold(
-            key: _vaccineGlobalKey,
-            body: Container(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [header(), _body()],
+              key: _vaccineGlobalKey,
+              body: Container(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [header(), _body()],
+                ),
               ),
-            ),
-            floatingActionButton: _floatingFilterButton(),
-          );
+              floatingActionButton: FloatingActionBubble(
+                onPress: () {
+                  print("onPress Floating Action Button");
+                  if (animationController.status == AnimationStatus.dismissed) {
+                    bloc.add(
+                        const ReverseAnimationEvent(isReverseAnimation: false));
+                    animationController.forward();
+                  } else {
+                    bloc.add(
+                        const ReverseAnimationEvent(isReverseAnimation: true));
+                    animationController.reverse();
+                  }
+                },
+                iconData: bloc.isReverseAnimation
+                    ? Icons.filter_alt_rounded
+                    : Icons.close,
+                items: [
+                  Bubble(
+                      icon: Icons.format_list_numbered_sharp,
+                      iconColor: bloc.isShowVaccination
+                          ? ThemePrimary.primaryColor
+                          : Colors.white,
+                      bubbleColor: bloc.isShowVaccination
+                          ? Colors.white
+                          : ThemePrimary.primaryColor,
+                      onPress: () {
+                        bloc.add(
+                            const ChangeVaccineViewEvent(isShowVaccine: true));
+                      },
+                      title: "Xem theo số liệu tiêm chủng",
+                      textStyle: Theme.of(context)
+                          .textTheme
+                          .bodyText1!
+                          .copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: bloc.isShowVaccination
+                                  ? ThemePrimary.primaryColor
+                                  : Colors.white)),
+                  Bubble(
+                      icon: Icons.format_list_numbered_sharp,
+                      iconColor: bloc.isShowVaccination
+                          ? Colors.white
+                          : ThemePrimary.primaryColor,
+                      bubbleColor: !bloc.isShowVaccination
+                          ? Colors.white
+                          : ThemePrimary.primaryColor,
+                      onPress: () {
+                        bloc.add(
+                            const ChangeVaccineViewEvent(isShowVaccine: false));
+                      },
+                      title: "Xem theo số liệu ca nhiễm",
+                      textStyle: Theme.of(context)
+                          .textTheme
+                          .bodyText1!
+                          .copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: !bloc.isShowVaccination
+                                  ? ThemePrimary.primaryColor
+                                  : Colors.white))
+                ],
+                animation: animation,
+                backGroundColor: ThemePrimary.primaryColor,
+                iconColor: Colors.white,
+              ));
         },
       ),
     );
-  }
-
-  // Widget body(){
-  //   return
-  // }
-
-  Widget _floatingFilterButton() {
-    // return FloatingActionBubble(
-    //     iconData: IconData(
-    //
-    //     ),
-    // );
-    return Container();
   }
 }

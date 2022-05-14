@@ -17,7 +17,7 @@ class TopHomeWidget extends StatelessWidget {
       padding: EdgeInsets.only(bottom: 20),
       decoration: BoxDecoration(
         color: ThemePrimary.primaryColor,
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
             bottomLeft: Radius.circular(30), bottomRight: Radius.circular(30)),
       ),
       // color: Constants.colorMain,
@@ -100,8 +100,10 @@ class TopHomeWidget extends StatelessWidget {
               Expanded(
                   child: Center(
                       child: TextButton(
-                onPressed: onTap(),
+                onPressed: () => onTap(),
                 child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(
                       icon,
